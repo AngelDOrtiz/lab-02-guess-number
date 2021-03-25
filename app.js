@@ -9,23 +9,23 @@ const retryButton = document.getElementById('retry');
 
 // initialize state
 let remainingGuesses = 3;
-let correctNumber = 0;
+let correctNumber = 10;
 // set event listeners to update state and DOM
 guessButton.addEventListener('click', () => {
-    let userGuesses = userGuess.value;
+    let userGuesses = Number(userGuess.value);
     const results = compareNumbers(userGuesses, correctNumber);
-    
-    if (results < correctNumber) {
+    console.log(results);
+    if (results === -1) {
         alert('Too Low!');
         remainingGuesses--;
     }
 
-    if (results > correctNumber) {
+    if (results === 1) {
         alert('Too High!');
         remainingGuesses--;
     }
 
-    if (results === correctNumber) {
+    if (results === 0) {
         alert('YOU WIN');
         retryButton.classList.remove('retry');
         retryButton.textContent = 'Play Again';
@@ -34,7 +34,11 @@ guessButton.addEventListener('click', () => {
     guesses.textContent = remainingGuesses;
 
     if (remainingGuesses === 0) {
+        alert('I guess you lose :^)');
         retryButton.classList.remove('retry');
     }
 });
 
+retryButton.addEventListener('click', () => {
+    location.reload();
+});
