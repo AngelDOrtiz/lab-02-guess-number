@@ -118,6 +118,6 @@ footer {
 
   }
 
-  .user-guess {
-    
-  }
+.retry {
+    display: none;
+}
